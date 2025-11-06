@@ -2,7 +2,7 @@
 
 A beautiful desktop wallpaper selector application built with Flutter for Windows.
 
-## 🎨 Features
+##  Features
 
 - Browse wallpapers by categories (Nature, Abstract, Animals, Architecture, Minimal, Cars)
 - Search functionality
@@ -12,11 +12,11 @@ A beautiful desktop wallpaper selector application built with Flutter for Window
 - Responsive desktop layout
 - Smooth animations and hover effects
 
-## 📸 Screenshots
+##  Screenshots
 
 [Add screenshots here]
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -28,7 +28,7 @@ A beautiful desktop wallpaper selector application built with Flutter for Window
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/wallpaper_selector_desktop.git
+git clone https://github.com/kingshhub/hng-desktop-app
 cd wallpaper_selector_desktop
 ```
 
@@ -80,8 +80,7 @@ https://www.figma.com/design/WnHFPfZ7uW2vxy4sHqtb12/MOBILE-WALLPAPER-SELECTOR?no
 
 ## 👨‍💻 Author
 
-Kingsley Simeon - [GitHub Profile](https://github.com/yourusername)
-
+Kingsley Simeon - https://github.com/kingshhub/
 ## 📄 License
 
 This project is licensed under the MIT License.

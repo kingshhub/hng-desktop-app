@@ -7,14 +7,31 @@ import '../providers/category_provider.dart';
 import '../providers/theme_provider.dart';
 
 class SidebarNavigation extends StatefulWidget {
-  const SidebarNavigation({super.key});
+  final String selectedMenu;
+  final ValueChanged<String>? onMenuSelected;
+
+  const SidebarNavigation({super.key, this.selectedMenu = 'Home', this.onMenuSelected});
 
   @override
   State<SidebarNavigation> createState() => _SidebarNavigationState();
 }
 
 class _SidebarNavigationState extends State<SidebarNavigation> {
-  String _selectedMenu = 'Home';
+  late String _selectedMenu;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedMenu = widget.selectedMenu;
+  }
+
+  @override
+  void didUpdateWidget(covariant SidebarNavigation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selectedMenu != widget.selectedMenu) {
+      _selectedMenu = widget.selectedMenu;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,21 +97,30 @@ class _SidebarNavigationState extends State<SidebarNavigation> {
                   icon: Icons.home_rounded,
                   label: 'Home',
                   isSelected: _selectedMenu == 'Home',
-                  onTap: () => setState(() => _selectedMenu = 'Home'),
+                  onTap: () {
+                    setState(() => _selectedMenu = 'Home');
+                    widget.onMenuSelected?.call('Home');
+                  },
                   isDark: isDark,
                 ),
                 _buildMenuItem(
                   icon: Icons.favorite_rounded,
                   label: 'Favorites',
                   isSelected: _selectedMenu == 'Favorites',
-                  onTap: () => setState(() => _selectedMenu = 'Favorites'),
+                  onTap: () {
+                    setState(() => _selectedMenu = 'Favorites');
+                    widget.onMenuSelected?.call('Favorites');
+                  },
                   isDark: isDark,
                 ),
                 _buildMenuItem(
                   icon: Icons.download_rounded,
                   label: 'Downloads',
                   isSelected: _selectedMenu == 'Downloads',
-                  onTap: () => setState(() => _selectedMenu = 'Downloads'),
+                  onTap: () {
+                    setState(() => _selectedMenu = 'Downloads');
+                    widget.onMenuSelected?.call('Downloads');
+                  },
                   isDark: isDark,
                 ),
 
@@ -142,12 +168,27 @@ class _SidebarNavigationState extends State<SidebarNavigation> {
           // Theme Toggle
           Padding(
             padding: const EdgeInsets.all(AppSizes.paddingM),
-            child: _buildMenuItem(
-              icon: isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-              label: isDark ? 'Light Mode' : 'Dark Mode',
-              isSelected: false,
-              onTap: () => themeProvider.toggleTheme(),
-              isDark: isDark,
+            child: Column(
+              children: [
+                _buildMenuItem(
+                  icon: isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+                  label: isDark ? 'Light Mode' : 'Dark Mode',
+                  isSelected: false,
+                  onTap: () => themeProvider.toggleTheme(),
+                  isDark: isDark,
+                ),
+                const SizedBox(height: AppSizes.paddingS),
+                _buildMenuItem(
+                  icon: Icons.settings_rounded,
+                  label: 'Settings',
+                  isSelected: _selectedMenu == 'Settings',
+                  onTap: () {
+                    setState(() => _selectedMenu = 'Settings');
+                    widget.onMenuSelected?.call('Settings');
+                  },
+                  isDark: isDark,
+                ),
+              ],
             ),
           ),
         ],

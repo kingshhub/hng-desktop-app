@@ -2,17 +2,51 @@ import 'package:flutter/material.dart';
 import '../widgets/sidebar_navigation.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/wallpaper_grid.dart';
+import 'favorites_screen.dart';
+import 'category_screen.dart';
+import 'settings_screen.dart';
+import 'downloads_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String _selectedMenu = 'Home';
+
+  void _onMenuSelected(String menu) {
+    setState(() {
+      _selectedMenu = menu;
+    });
+  }
+
+  Widget _buildMainContent() {
+    switch (_selectedMenu) {
+      case 'Favorites':
+        return const FavoritesScreen();
+      case 'Downloads':
+        return const DownloadsScreen();
+      case 'Settings':
+        return const SettingsScreen();
+      case 'Home':
+      default:
+        return const WallpaperGrid();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Row(
         children: [
           // Sidebar
-          SidebarNavigation(),
+          SidebarNavigation(
+            selectedMenu: _selectedMenu,
+            onMenuSelected: _onMenuSelected,
+          ),
 
           // Main Content
           Expanded(
@@ -21,9 +55,9 @@ class HomeScreen extends StatelessWidget {
                 // App Bar
                 CustomAppBar(),
 
-                // Wallpaper Grid
+                // Main Area
                 Expanded(
-                  child: WallpaperGrid(),
+                  child: _buildMainContent(),
                 ),
               ],
             ),
