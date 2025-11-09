@@ -3,7 +3,6 @@ import '../widgets/sidebar_navigation.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/wallpaper_grid.dart';
 import 'favorites_screen.dart';
-import 'category_screen.dart';
 import 'settings_screen.dart';
 import 'downloads_screen.dart';
 
@@ -53,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 // App Bar
-                CustomAppBar(),
+                const CustomAppBar(),
 
                 // Main Area
                 Expanded(

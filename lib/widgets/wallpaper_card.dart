@@ -213,6 +213,42 @@ class _WallpaperCardState extends State<WallpaperCard> {
                       ),
                     ),
 
+                  // Active Badge
+                  if (wallpaperProvider.activeWallpaper?.id ==
+                      widget.wallpaper.id)
+                    Positioned(
+                      top: AppSizes.paddingM,
+                      left: AppSizes.paddingM,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSizes.paddingS,
+                          vertical: 4,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          borderRadius: BorderRadius.circular(AppSizes.radiusS),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.check_circle_rounded,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'Active',
+                              style: AppTextStyles.caption.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
                   // Hover Overlay
                   if (_isHovered)
                     Positioned.fill(

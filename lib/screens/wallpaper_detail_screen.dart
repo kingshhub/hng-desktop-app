@@ -149,22 +149,66 @@ class WallpaperDetailScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.download_rounded),
-                        label: const Text('Download'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppSizes.paddingL,
-                            vertical: AppSizes.paddingM,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {},
+                            icon: const Icon(Icons.download_rounded),
+                            label: const Text('Download'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primary,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSizes.paddingL,
+                                vertical: AppSizes.paddingM,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppSizes.radiusL),
+                              ),
+                            ),
                           ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppSizes.radiusL),
+                          const SizedBox(width: AppSizes.paddingM),
+                          OutlinedButton.icon(
+                            onPressed: () {
+                              wallpaperProvider
+                                  .setActiveWallpaper(wallpaper.id);
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: const Text('Set Wallpaper'),
+                                  content: const Text(
+                                      'This will mark the wallpaper as active in the app. On Windows you can use the exported image to set as system wallpaper.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.check_rounded),
+                            label: const Text('Set as Wallpaper'),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: isDark
+                                  ? AppColors.textDark
+                                  : AppColors.textPrimary,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSizes.paddingL,
+                                vertical: AppSizes.paddingM,
+                              ),
+                              side: const BorderSide(
+                                color: AppColors.primary,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppSizes.radiusL),
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),

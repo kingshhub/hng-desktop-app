@@ -7,6 +7,7 @@ class WallpaperProvider extends ChangeNotifier {
   List<WallpaperModel> _favorites = [];
   String _searchQuery = '';
   String? _selectedCategory;
+  String? _activeWallpaperId;
   SortOption _sortOption = SortOption.newest;
 
   List<WallpaperModel> get wallpapers => _getFilteredWallpapers();
@@ -83,6 +84,16 @@ class WallpaperProvider extends ChangeNotifier {
   void setSortOption(SortOption option) {
     _sortOption = option;
     notifyListeners();
+  }
+
+  void setActiveWallpaper(String wallpaperId) {
+    _activeWallpaperId = wallpaperId;
+    notifyListeners();
+  }
+
+  WallpaperModel? get activeWallpaper {
+    if (_activeWallpaperId == null) return null;
+    return getWallpaperById(_activeWallpaperId!);
   }
 
   Future<void> toggleFavorite(String wallpaperId) async {

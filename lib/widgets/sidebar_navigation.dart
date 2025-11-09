@@ -10,7 +10,8 @@ class SidebarNavigation extends StatefulWidget {
   final String selectedMenu;
   final ValueChanged<String>? onMenuSelected;
 
-  const SidebarNavigation({super.key, this.selectedMenu = 'Home', this.onMenuSelected});
+  const SidebarNavigation(
+      {super.key, this.selectedMenu = 'Home', this.onMenuSelected});
 
   @override
   State<SidebarNavigation> createState() => _SidebarNavigationState();
@@ -171,7 +172,9 @@ class _SidebarNavigationState extends State<SidebarNavigation> {
             child: Column(
               children: [
                 _buildMenuItem(
-                  icon: isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+                  icon: isDark
+                      ? Icons.light_mode_rounded
+                      : Icons.dark_mode_rounded,
                   label: isDark ? 'Light Mode' : 'Dark Mode',
                   isSelected: false,
                   onTap: () => themeProvider.toggleTheme(),
